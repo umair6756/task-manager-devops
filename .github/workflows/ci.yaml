@@ -34,6 +34,7 @@ jobs:
         working-directory: ./backend
       - name: Run Unit Tests
         run: npm run test:coverage
+        working-directory: ./backend
         env:
           NODE_ENV: test
           MONGO_URI: mongodb://localhost:27017/test-db

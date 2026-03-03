@@ -11,11 +11,10 @@ on:
     paths-ignore:
       - '**.md'
       - 'docs/**'
-  # SPEED BOOST: Agar sirf documentation change ho to pipeline nahi chalegi
 
 
 jobs:
-  # JOB 1: Sab branch par chalega (Fast Test)
+  
   build-and-test:
     runs-on: ubuntu-latest
     services:
@@ -27,9 +26,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm' # SPEED: Har baar install nahi karega
+          cache: 'npm' 
+          cache-dependency-path: './backend/package-lock.json'
       
-      - run: npm ci
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: ./backend
       - name: Run Unit Tests
         run: npm run test:coverage
         env:
@@ -37,7 +39,7 @@ jobs:
           MONGO_URI: mongodb://localhost:27017/test-db
           JWT_SECRET: ${{ secrets.JWT_SECRET_TEST }}
 
-  # JOB 2: Sirf Main ya Develop branch par Security Scan (Trivy)
+
   security-scan:
     needs: build-and-test
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
@@ -51,7 +53,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
           exit-code: '1'
 
-  # JOB 3: Sirf Main branch (Production) par Deep Analysis (SonarQube)
+ 
   sonar-analysis:
     needs: security-scan
     if: github.ref == 'refs/heads/main'

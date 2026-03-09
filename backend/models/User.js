@@ -7,6 +7,16 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }
 }, { timestamps: true });
 
+// Enable virtual population so we can fetch user tasks when needed.
+userSchema.set("toJSON", { virtuals: true });
+userSchema.set("toObject", { virtuals: true });
+
+userSchema.virtual("tasks", {
+  ref: "Task",
+  localField: "_id",
+  foreignField: "user"
+});
+
 // CORRECTED PRE-SAVE HOOK
 userSchema.pre("save", async function() {
   // Agar password modify nahi hua toh yahin se return kar jayein

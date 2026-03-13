@@ -1,0 +1,134 @@
+@import "tailwindcss";
+/* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Serif+Display&display=swap"); */
+
+:root {
+  --bg: #f4f1ec;
+  --panel: #ffffff;
+  --ink: #1c232b;
+  --muted: #5b6672;
+  --line: rgba(18, 24, 33, 0.12);
+  --accent: #3b82f6;
+  --accent-strong: #2563eb;
+  --accent-deep: #1e3a8a;
+  --accent-soft: #dbeafe;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Outfit", system-ui, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top, #f8fbff 0%, #f4f1ec 45%, #ebe6df 100%);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "DM Serif Display", serif;
+  letter-spacing: 0.02em;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.auth-shell {
+  backdrop-filter: blur(6px);
+}
+
+.card-shell {
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 26px 60px -45px rgba(15, 29, 43, 0.4);
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  color: white;
+  box-shadow: 0 16px 35px -20px rgba(37, 99, 235, 0.6);
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: translateX(-120%);
+  transition: transform 500ms ease;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-ghost {
+  background: #f1f5f9;
+  color: var(--accent-deep);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  background: #e2e8f0;
+}
+
+.input-field {
+  background: #fff;
+  border: 1px solid rgba(15, 29, 43, 0.15);
+  box-shadow: 0 12px 30px -20px rgba(15, 29, 43, 0.35);
+}
+
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.input-field:hover {
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+.form-card {
+  /* border-radius: 24px; */
+  border: 1px solid rgba(31, 58, 83, 0.08);
+  padding: 32px;
+  /* background: rgba(255, 255, 255, 0.9); */
+  box-shadow: 0 20px 40px -32px rgba(31, 58, 83, 0.5);
+}
+
+.toast-enter {
+  animation: toastIn 400ms ease both;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 800ms ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -29,16 +29,23 @@ jobs:
           # cache: 'npm' 
           # cache-dependency-path: './backend/package-lock.json'
       
-      - name: Install Dependencies
+      - name: Install Dependencies Backend
         run: npm ci
         working-directory: ./backend
-      - name: Run Unit Tests
+      - name: Run Unit Tests Backend
         run: npm run test:coverage
         working-directory: ./backend
         env:
           NODE_ENV: test
           MONGO_URI: mongodb://localhost:27017/test-db
           JWT_SECRET: ${{ secrets.JWT_SECRET_TEST }}
+
+      - name: Install Dependencies Frontend
+        run: npm ci
+        working-directory: ./frontend
+      - name: Run Unit Tests Frontend
+        run: npm run test:coverage
+        working-directory: ./frontend
 
 
   security-scan:

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-/* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Serif+Display&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Serif+Display&display=swap");
 
 :root {
   --bg: #f4f1ec;
@@ -11,6 +11,8 @@
   --accent-strong: #2563eb;
   --accent-deep: #1e3a8a;
   --accent-soft: #dbeafe;
+  --surface: #f8fafc;
+  --shadow-soft: 0 18px 40px -30px rgba(15, 29, 43, 0.35);
 }
 
 * {
@@ -37,15 +39,34 @@ h4 {
   min-height: 100vh;
 }
 
+/* Auth UI (unchanged) */
 .auth-shell {
   backdrop-filter: blur(6px);
+  /* border-radius: 28px; */
+  /* border: 1px solid var(--line); */
+
+  box-shadow: 0 26px 60px -45px rgba(15, 29, 43, 0.4);
 }
 
-.card-shell {
-  border-radius: 28px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  box-shadow: 0 26px 60px -45px rgba(15, 29, 43, 0.4);
+.form-card {
+  border: 1px solid rgba(31, 58, 83, 0.08);
+  padding: 32px;
+  box-shadow: 0 20px 40px -32px rgba(31, 58, 83, 0.5);
+}
+
+.input-field {
+  background: #fff;
+  border: 1px solid rgba(15, 29, 43, 0.15);
+  box-shadow: 0 12px 30px -20px rgba(15, 29, 43, 0.35);
+}
+
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.input-field:hover {
+  border-color: rgba(59, 130, 246, 0.45);
 }
 
 .btn-primary {
@@ -78,44 +99,6 @@ h4 {
 .btn-ghost:hover {
   border-color: rgba(59, 130, 246, 0.4);
   background: #e2e8f0;
-}
-
-.input-field {
-  background: #fff;
-  border: 1px solid rgba(15, 29, 43, 0.15);
-  box-shadow: 0 12px 30px -20px rgba(15, 29, 43, 0.35);
-}
-
-.input-field:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-}
-
-.input-field:hover {
-  border-color: rgba(59, 130, 246, 0.45);
-}
-
-.form-card {
-  /* border-radius: 24px; */
-  border: 1px solid rgba(31, 58, 83, 0.08);
-  padding: 32px;
-  /* background: rgba(255, 255, 255, 0.9); */
-  box-shadow: 0 20px 40px -32px rgba(31, 58, 83, 0.5);
-}
-
-.toast-enter {
-  animation: toastIn 400ms ease both;
-}
-
-@keyframes toastIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 .fade-up {

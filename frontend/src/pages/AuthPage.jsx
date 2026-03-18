@@ -11,7 +11,7 @@ const initialForm = {
   password: "",
 }
 
-export default function AuthPage() {
+export default function AuthPage({ onAuth }) {
   const [mode, setMode] = useState("login")
   const [form, setForm] = useState(initialForm)
   const [loading, setLoading] = useState(false)
@@ -68,17 +68,15 @@ export default function AuthPage() {
 
       const data = isLogin ? await loginUser(payload) : await registerUser(payload)
 
-      localStorage.setItem("taskToken", data.token)
-      localStorage.setItem(
-        "taskUser",
-        JSON.stringify({ id: data._id, name: data.name, email: data.email })
-      )
-
       toast.success(
         isLogin
           ? "Login successful. Your workspace is ready."
           : "Account created. You can now log in."
       )
+
+      if (onAuth) {
+        onAuth({ token: data.token, user: { id: data._id, name: data.name, email: data.email } })
+      }
 
       if (!isLogin) {
         setMode("login")

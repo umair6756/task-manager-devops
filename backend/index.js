@@ -10,6 +10,7 @@ app.use(cors());
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/tasks", require("./routes/taskRoutes"));
+app.get("/health", (req, res) => res.status(200).json({ status: "ok" }));
 
 // Centralized Error Handler (Important for 'next' errors)
 app.use((err, req, res, next) => {
